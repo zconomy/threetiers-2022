@@ -10,3 +10,20 @@ cnx = mysql.connector.connect(user='root',
 #           YOUR CODE
 # ----------------------------------- 
 
+college = input('Enter college name: ')
+students = input('enter student population: ')
+
+cursor = cnx.cursor()
+query = (f'INSERT INTO `Colleges` VALUES (NULL, "{college}", "{students}", NULL, NULL, NULL)')
+
+cursor.execute(query)
+
+query = ('SELECT * FROM Colleges')
+cursor.execute(query)
+
+for row in cursor.fetchall():
+    print(row)
+
+cnx.commit()
+cursor.close()
+cnx.close()
